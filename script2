@@ -1,0 +1,38 @@
+#!/bin/bash
+# Script 2: FOSS Package Inspector
+
+PACKAGE="python3"
+
+echo "Checking package: $PACKAGE"
+echo "--------------------------------"
+
+# Check using dpkg (Ubuntu/Debian)
+if dpkg -l | grep -q "^ii  $PACKAGE"; then
+    echo "$PACKAGE is installed."
+
+    dpkg -s $PACKAGE | grep -E "Version|Maintainer|Description"
+else
+    echo "$PACKAGE is NOT installed."
+fi
+
+echo "--------------------------------"
+echo "Package Insight:"
+
+# Case statement
+case $PACKAGE in
+    python3)
+        echo "Python: a community-driven language for everyone"
+        ;;
+    git)
+        echo "Git: version control built for open collaboration"
+        ;;
+    apache2)
+        echo "Apache: the web server that built the internet"
+        ;;
+    mysql-server)
+        echo "MySQL: open-source database powering applications"
+        ;;
+    *)
+        echo "Unknown package — still part of the open-source ecosystem"
+        ;;
+esac
